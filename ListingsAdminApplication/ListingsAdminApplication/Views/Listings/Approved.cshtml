@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ListingsAdminApplication.Models.ListingNoImage>
+
+@{
+    ViewData["Title"] = "Listings";
+}
+
+
+
+<form asp-controller="Listings" asp-action="ExportListings">
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <h3 style="margin-bottom: 30px;">Approved posts</h3>
+        </div>
+        <div class="col-md-2">
+            <input type="date" style="margin-top: 11px;" id="dateExport" name="dateExport"
+                   min="2022-01-01" max="2023-01-01">
+        </div>
+        <div class="col-md-2">
+            <input type="submit" style="margin-top: 11px !important;" value="Export weekly posts" class="btn btn-sm mt-1 btn-primary" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Updated
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var i = 0; }
+        @foreach (var item in Model)
+        {
+            i = i + 1;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.City)
+                </td>
+
+                <td>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,101 @@
+﻿@using Microsoft.Extensions.Options
+@model Listing.Domain.DTO.WishlistDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>My wishlist</h2>
+
+    <div class="row">
+        @foreach (var item in Model.Listings)
+        {
+            <div class="col-md-4" style="padding-top: 15px;">
+                <div class="card-profile">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < item.Listing.ListingImages.Count; i++)
+                            {
+                                var image = item.Listing.ListingImages.ElementAt(i);
+
+                                <a data-lightbox="@item.Id" href="@image.ImageSrc" style="width: inherit">
+                                    @if (i == 0)
+                                    {
+                                        <img src="@image.ImageSrc" style="border-radius: 7px 7px 0 0; width: inherit " height="250" />
+                                    }
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-header text-center border-0">
+                        @item.Listing.Title
+                    </div>
+                    <div class="card-body description">
+                        <p class="desc-text">
+                            @item.Listing.Description
+                        </p>
+                        <div class="row">
+                            <div class="col-6 price">
+                                Price:
+                                <span id="price">
+                                    @item.Listing.Price
+                                </span> $
+                                <br />
+                                <p style="margin-bottom: 0">
+                                    @item.Listing.Location.City
+                                </p>
+                                <a class="see-more" asp-action="Details" asp-route-id="@item.ListingId" asp-controller="Listings">
+                                    See more details
+                                </a>
+                            </div>
+                            <div class="col-6 d-flex align-items-end justify-content-end">
+                                <button type="button" class="btn btn-danger" onclick="ShowModal('@item.Id')">
+                                    Delete
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this post?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form asp-action="DeleteFromWishlist">
+                                                    <input type="hidden" asp-for="@item.ListingId" name="id" />
+                                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section scripts{
+    <script>
+        function ShowModal(id) {
+            var call = "#" + id;
+            $(call).modal('toggle');
+        };
+    </script>
+
+}

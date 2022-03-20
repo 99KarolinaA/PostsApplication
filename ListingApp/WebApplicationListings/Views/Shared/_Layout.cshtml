@@ -1,0 +1,129 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Listing.Domain.Identity.UserDetails> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplicationListings</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="~/vendor/nucleo/css/nucleo.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/vendor/@@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" asp-append-version="true">
+    <!-- Argon CSS -->
+    <link type="text/css" href="~/css/argon.css?v=1.2.0" rel="stylesheet" asp-append-version="true">
+    <link type="text/css" href="~/css/styling.css" rel="stylesheet" asp-append-version="true">
+    <link type="text/css" href="~/css/lightbox.css" rel="stylesheet" asp-append-version="true">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-top navbar-expand-md " id="navbar-main">
+            <div class="container-fluid">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <img src="https://uploads-eu-west-1.insided.com/inspired-en/attachment/797fa735-fa6e-427b-9796-9c93b9965698_thumb.png"
+                             style="height: 48px; width: 140px; margin-right: 25px" />
+                    </li>
+                    @*<li class="nav-item nav-custom">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>*@
+                    <li class="nav-item nav-custom">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Listings" asp-action="Index">Home</a>
+                    </li>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item nav-custom">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Listings" asp-action="MyPosts">My Posts</a>
+                        </li>
+                        <li class="nav-item nav-custom">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Wishlists" asp-action="Index">Wishlist</a>
+                        </li>
+                        <li class="nav-item nav-custom">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Chat" asp-action="Index">Chat</a>
+                        </li>
+                    }
+                </ul>
+                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" asp-action="SearchResult" asp-controller="Listings">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search" type="text" name="search">
+                        </div>
+                    </div>
+                    @*  <div class="form-group">
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                        </div>*@
+                </form>
+
+                <ul class="navbar-nav align-items-center d-none d-md-flex">
+                    <li class="nav-item-user dropdown">
+                        <a class="nav-link pr-0" href="/Identity/Account/Manage" role="button" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <span class="avatar avatar-sm rounded-circle">
+                                        <img id="avatar" alt="Image placeholder" src="~/img/theme/team-4-800x800.jpg">
+                                    </span>
+                                }
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm font-weight-bold">
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+                                            <span>@User.Identity.Name</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        @*<partial name="_Dropdown" />*@
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - WebApplicationListings - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+    <script src="~/scripts/script.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/lightbox/lightbox-plus-jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/vendor/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/js-cookie/js.cookie.js" asp-append-version="true"></script>
+    <script src="~/vendor/jquery.scrollbar/jquery.scrollbar.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js" asp-append-version="true"></script>
+    <!-- Docs JS -->
+    <script src="~/vendor/anchor-js/anchor.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/clipboard/dist/clipboard.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/holderjs/holder.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/prismjs/prism.js" asp-append-version="true"></script>
+    <!-- Optional JS -->
+    <script src="~/vendor/chart.js/dist/Chart.min.js" asp-append-version="true"></script>
+    <script src="~/vendor/chart.js/dist/Chart.extension.js" asp-append-version="true"></script>
+    <script src="~/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+    <!-- Argon JS -->
+    <script src="~/js/argon.min.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿body {
+    background-color: #FEFFFC;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23dac9fe'/%3E%3Cstop offset='1' stop-color='%23dac9fe' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23cffff8'/%3E%3Cstop offset='1' stop-color='%23cffff8' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23abc9fa'/%3E%3Cstop offset='1' stop-color='%23abc9fa' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FEFFFC'/%3E%3Cstop offset='1' stop-color='%23FEFFFC' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23B593FF'/%3E%3Cstop offset='1' stop-color='%23B593FF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23A0FFF4'/%3E%3Cstop offset='1' stop-color='%23A0FFF4' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.nav-custom {
+    font-size: 14pt;
+    border-bottom: 2px solid #2D3F5E;
+    border-radius: 0 0 0 10px;
+    margin: 7px;
+}
+
+    .nav-custom:hover {
+        font-weight: 700;
+    }
+
+.nav-item {
+    margin-bottom: 5px;
+}
+
+#image-listing {
+    border-radius: 10px 10px 0 0;
+}
+
+.card-header {
+    font-size: 15pt;
+    color: black;
+    font-weight: 600;
+}
+
+.description {
+    padding-top: 0;
+    max-width: 400px;
+    background: white;
+}
+
+.desc-text {
+    font-size: 11pt !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    font-size: 13pt !important;
+}
+
+#price {
+    color: green;
+}
+
+.create-btn {
+    float: right;
+    background: #2dce89;
+}
+
+    .create-btn a {
+        color: white !important;
+    }
+
+.see-more {
+    font-size: 13pt !important;
+    text-decoration: underline #5e72e4 !important;
+}
+
+    .see-more:hover {
+        font-weight: 600;
+        text-decoration: underline dotted #5e72e4 !important
+    }
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
